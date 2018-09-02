@@ -22,40 +22,64 @@
             }
         }
 
-        function playRound(playerSelection, computerSelection) {
-            
-            let userChoice = playerSelection.toLowerCase();
-            let x;
-
-            if (!(userChoice == 'rock' | userChoice === 'paper' | userChoice === 'scissors')) {
-                alert("Please choose rock, paper or scissors.")
+        function userPlay() {
+            //prompt user for rock, paper, or scissor
+            let userChoice;
+            while (!(userChoice == 'rock' | userChoice === 'paper' | userChoice === 'scissors')) {
+                userChoice = window.prompt('Pick rock, paper, or scissors.')
+                userChoice = userChoice.toLowerCase();
             }
-            
+            return userChoice;
+        }
 
-            if (userChoice == 'rock') {
+        function playRound() {
+            
+            const playerSelection = userPlay()
+            const computerSelection = computerPlay()
+
+            if (playerSelection == 'rock') {
                 return (computerSelection == 'paper') ?  "You lose! Paper beats rock." :
                 (computerSelection == 'rock') ?  "It's a tie. You both picked rock." :
                  "You win! Rock beats scissors.";
             }
 
-            if (userChoice === 'paper') { 
+            if (playerSelection === 'paper') { 
                 return (computerSelection === 'paper') ?  "It's a tie. You both picked paper." :
                 (computerSelection === 'rock') ?   "You win! Paper beats rock." :
                 "You lose! Scissors beats paper."
             }
 
-            if (userChoice === 'scissors') {
-                return (computerSelection === 'paper') ?  "You win! Scissors beats rock." :
+            if (playerSelection === 'scissors') {
+                return (computerSelection === 'paper') ?  "You win! Scissors beats paper." :
                 (computerSelection === 'rock') ?  "You lose! Rock beats scissors." :
                 "It's a tie. You both picked scissors."
             }
-                
-        
         }
 
-        const playerSelection = 'rock'
-        const computerSelection = computerPlay()
-        console.log(playRound(playerSelection, computerSelection))
+        function game() {
+            // keep score 
+            let userWins = 0;
+            let computerWins = 0;
+
+            for (let i = 0; i < 5; i++) {
+
+                let result = playRound();
+
+                if (result.includes('win')) {
+                    userWins += 1;
+                } else if (result.includes('lose')) {
+                    computerWins += 1;
+                } else {
+                    userWins += 1;
+                    computerWins += 1;
+                }
+                console.log(result);
+            }
+
+            console.log(`User: ${userWins} | Computer: ${computerWins}`)
+        } 
+
+        game();
         
     </script>
 </body>
