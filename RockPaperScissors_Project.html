@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <script>
+
+        function computerPlay() {
+            //randomly returns rock, paper, or scissors
+            let randomNum = Math.random();
+            
+            if (randomNum < 0.33) {
+                return 'rock'
+            } else if (randomNum < 0.66) {
+                return 'paper'
+            } else {
+                return 'scissors'
+            }
+        }
+
+        function playRound(playerSelection, computerSelection) {
+            
+            let userChoice = playerSelection.toLowerCase();
+            let x;
+
+            if (!(userChoice == 'rock' | userChoice === 'paper' | userChoice === 'scissors')) {
+                alert("Please choose rock, paper or scissors.")
+            }
+            
+
+            if (userChoice == 'rock') {
+                return (computerSelection == 'paper') ?  "You lose! Paper beats rock." :
+                (computerSelection == 'rock') ?  "It's a tie. You both picked rock." :
+                 "You win! Rock beats scissors.";
+            }
+
+            if (userChoice === 'paper') { 
+                return (computerSelection === 'paper') ?  "It's a tie. You both picked paper." :
+                (computerSelection === 'rock') ?   "You win! Paper beats rock." :
+                "You lose! Scissors beats paper."
+            }
+
+            if (userChoice === 'scissors') {
+                return (computerSelection === 'paper') ?  "You win! Scissors beats rock." :
+                (computerSelection === 'rock') ?  "You lose! Rock beats scissors." :
+                "It's a tie. You both picked scissors."
+            }
+                
+        
+        }
+
+        const playerSelection = 'rock'
+        const computerSelection = computerPlay()
+        console.log(playRound(playerSelection, computerSelection))
+        
+    </script>
+</body>
+</html>>
